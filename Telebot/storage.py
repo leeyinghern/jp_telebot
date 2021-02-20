@@ -28,7 +28,6 @@ def del_user_state(user_id):
         pass
     return None
 
-
 # def get_current_state(user_id):
 #     return IN_MEMORY_STORE.get(user_id)
 
