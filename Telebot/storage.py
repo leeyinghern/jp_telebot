@@ -6,8 +6,7 @@ def get_current_state(user_id, game_mode):
     try:
         return IN_MEMORY_STORE[user_id].get(game_mode)
 
-    except AttributeError as a:
-        print('Attribute Error ' + str(a))
+    except:
         IN_MEMORY_STORE[user_id] = {game_mode:0}
         return IN_MEMORY_STORE.get(user_id).get(game_mode)
 
