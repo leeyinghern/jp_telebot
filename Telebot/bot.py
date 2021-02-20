@@ -18,8 +18,8 @@ def welcome_menu(message):
     hour = dt.datetime.now().hour
     hour_text = 'こんばんは！' if hour > 18 else 'こんにちは！' if hour > 12 and hour < 18 else 'おはいよございます！'
     welcome_message = f"""  
-    {hour_text}
-    Please select one of the following games to proceed!
+    {hour_text} \n
+    Please select one of the following games to proceed! \n 
     Good luck, and have fun!
     """
     keyboard = keyboards.welcome_menu_games_list()
@@ -43,7 +43,7 @@ def start_vocab_quiz(message):
 @bot.message_handler(func= lambda message: storage.get_current_state(message.from_user.id, "VOCAB") > 0 )
 def next_question(message):
     try:
-        current_state = storage.get_current_state(message.from_user.id)
+        current_state = storage.get_current_state(message.from_user.id, game_mode = 'VOCAB')
         prev_state = current_state - 1
         prev_ans = message.text
         if prev_ans in vocab.questions[f'answers{prev_state}']:
