@@ -10,7 +10,7 @@ def get_current_state(user_id, game_mode):
            set_user_state(user_id, 0, game_mode)
            return IN_MEMORY_STORE.get(user_id).get(game_mode)
     except AttributeError:
-        set_user_state(user_id, 0, game_mode)
+        IN_MEMORY_STORE[user_id].update({game_mode:0})
         return IN_MEMORY_STORE.get(user_id).get(game_mode)
 
 def set_user_state(user_id,state, game_mode):
