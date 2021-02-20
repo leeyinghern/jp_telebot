@@ -16,7 +16,7 @@ def welcome_menu(message):
     hour = dt.datetime.now().hour
     hour_text = 'こんばんは！' if hour > 18 else 'こんにちは！' if hour > 12 and hour < 18 else 'おはいよございます！'
     welcome_message = f"""  
-    {hour_text} 
+    {hour_text}
     Please select one of the following games to proceed!
     Good luck, and have fun!
     """
