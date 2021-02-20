@@ -4,7 +4,7 @@ WRONG_ANSWERS = {}
 
 def get_current_state(user_id, game_mode):
     try:
-        return IN_MEMORY_STORE.get(user_id).get(game_mode)
+        return IN_MEMORY_STORE.get(user_id).get(game_mode,0)
     except AttributeError:
         pass
 
