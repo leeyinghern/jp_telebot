@@ -15,7 +15,9 @@ def set_user_state(user_id,state, game_mode):
         IN_MEMORY_STORE[user_id] = {game_mode:state}
     except AttributeError:
         pass
-            
+
+def del_user_state(user_id):
+    return del IN_MEMORY_STORE[user_id]
 
 
 # def get_current_state(user_id):

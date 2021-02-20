@@ -14,6 +14,7 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(commands = ['start'])
 def welcome_menu(message):
+    storage.del_user_state(message.from_user.id)
     hour = dt.datetime.now().hour
     hour_text = 'こんばんは！' if hour > 18 else 'こんにちは！' if hour > 12 and hour < 18 else 'おはいよございます！'
     welcome_message = f"""  
@@ -84,10 +85,12 @@ def next_question(message):
 #### OTHER DECORATORS
 @bot.message_handler(func = lambda message: True)
 def wrong(message):
+    storage.del_user_state(message.from_user.id)
     bot.send_message(chat_id = message.from_user.id, text = 'Something went wrong. Type /start to continue', reply_markup=keyboards.remove_keyboard())
 
 @bot.callback_query_handler(func = lambda callback: True)
 def wrong_callback(callback):
+    storage.del_user_state(message.from_user.id)
     bot.send_message(chat_id = callback.from_user.id, text = 'Something went wrong. Type /start to continue', reply_markup=keyboards.remove_keyboard())
 
 
