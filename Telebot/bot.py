@@ -65,20 +65,20 @@ def next_question(message):
         
 
 
-###### PARTICLE PRACTICE
-@bot.callback_query_handler(func= lambda callback: 'particle_practice' in callback.data )
-def get_particle_questions(callback):
-    storage.set_user_state(callback.from_user.id, 0, "PARTICLE")
-    USER_ANSWERS[callback.from_user.id] = 0
-    WRONG_ANSWERS[callback.from_user.id] = []
-    markup = telebot.types.ReplyKeyboardMarkup()
-    markup.add(telebot.types.KeyboardButton(text = "Start Game"))
-    bot.send_message(chat_id = callback.from_user.id, text = "Press the Start Game button whenever you're ready!", reply_markup = markup)
+# ###### PARTICLE PRACTICE
+# @bot.callback_query_handler(func= lambda callback: 'particle_practice' in callback.data )
+# def get_particle_questions(callback):
+#     storage.set_user_state(callback.from_user.id, 0, "PARTICLE")
+#     USER_ANSWERS[callback.from_user.id] = 0
+#     WRONG_ANSWERS[callback.from_user.id] = []
+#     markup = telebot.types.ReplyKeyboardMarkup()
+#     markup.add(telebot.types.KeyboardButton(text = "Start Game"))
+#     bot.send_message(chat_id = callback.from_user.id, text = "Press the Start Game button whenever you're ready!", reply_markup = markup)
 
-@bot.message_handler(func = lambda message: storage.get_current_state.get("PARTICLE") == States.PARTICLE_START_QUIZ)
-def start_particle_quiz(message):
-    bot.send_photo(caption = vocab.questions['question0'], chat_id = message.from_user.id, photo = vocab.questions['image0'], reply_markup=keyboards.remove_keyboard())
-    storage.set_user_state(message.from_user.id, USER_ANSWERS[message.from_user.id] +1 , "VOCAB")
+# @bot.message_handler(func = lambda message: storage.get_current_state.get("PARTICLE") == States.PARTICLE_START_QUIZ)
+# def start_particle_quiz(message):
+#     bot.send_photo(caption = vocab.questions['question0'], chat_id = message.from_user.id, photo = vocab.questions['image0'], reply_markup=keyboards.remove_keyboard())
+#     storage.set_user_state(message.from_user.id, USER_ANSWERS[message.from_user.id] +1 , "VOCAB")
 
 
 #### OTHER DECORATORS
