@@ -9,14 +9,14 @@ from Vocab import vocab
 token = '1638595494:AAH8urA10YAMc8lYbI5hngdfuwD9SPGaFBQ'
 TG_URL = 'https://api/telegram.org/bot{}/{}'
 
-bot = TeleBot(token)
+bot = TeleBot(token, parse_mode='HTML')
 
 @bot.message_handler(commands = ['start'])
 def welcome_menu(message):
     hour = dt.datetime.now().hour
     hour_text = 'こんばんは！' if hour > 18 else 'こんにちは！' if hour > 12 and hour < 18 else 'おはいよございます！'
     welcome_message = f"""  
-    {hour_text}
+    <b> {hour_text} </b>
     Please select one of the following games to proceed!
     Good luck, and have fun!
     """
