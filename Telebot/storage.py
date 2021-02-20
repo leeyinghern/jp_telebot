@@ -10,6 +10,8 @@ def set_user_state(user_id,state, game_mode):
         IN_MEMORY_STORE[user_id] = IN_MEMORY_STORE[user_id].update({game_mode:state})
     except KeyError:
         IN_MEMORY_STORE[user_id] = {game_mode:state}
+    except AttributeError:
+        pass
             
 
 
