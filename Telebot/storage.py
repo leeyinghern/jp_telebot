@@ -17,7 +17,10 @@ def set_user_state(user_id,state, game_mode):
         pass
 
 def del_user_state(user_id):
-    del IN_MEMORY_STORE[user_id]
+    try:
+        del IN_MEMORY_STORE[user_id]
+    except:
+        pass
     return None
 
 
