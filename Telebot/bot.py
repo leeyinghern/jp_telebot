@@ -34,12 +34,12 @@ def get_vocab_questions(callback):
     markup.add(telebot.types.KeyboardButton(text = "Start Game"))
     bot.send_message(chat_id = callback.from_user.id, text = "Press the Start Game button whenever you're ready! Or send any message to continue.", reply_markup = markup)
 
-@bot.message_handler(func= lambda message: storage.get_current_state(message.from_user.id, "VOCAB") == States.VOCAB_START_QUIZ)
+@bot.message_handler(func= lambda message: storage.get_current_state(message.from_user.id, "VOCAB") or 999 == States.VOCAB_START_QUIZ)
 def start_vocab_quiz(message):
     bot.send_photo(caption = vocab.questions['question0'], chat_id = message.from_user.id, photo = vocab.questions['image0'], reply_markup=keyboards.remove_keyboard())
     storage.set_user_state(message.from_user.id, USER_ANSWERS[message.from_user.id] +1 , "VOCAB")
 
-@bot.message_handler(func= lambda message: storage.get_current_state(message.from_user.id, "VOCAB") > 0 )
+@bot.message_handler(func= lambda message: storage.get_current_state(message.from_user.id, "VOCAB") or 0 > 0 )
 def next_question(message):
     try:
         current_state = storage.get_current_state(message.from_user.id)
