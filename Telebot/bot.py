@@ -93,5 +93,4 @@ def wrong_callback(callback):
     storage.del_user_state(callback.from_user.id)
     bot.send_message(chat_id = callback.from_user.id, text = 'Something went wrong. Type /start to continue', reply_markup=keyboards.remove_keyboard())
 
-
 bot.polling()
