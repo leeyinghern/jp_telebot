@@ -121,7 +121,7 @@ from flask import Flask, request
 
 import telebot
 
-TOKEN = '<api_token>'
+TOKEN = '1638595494:AAH8urA10YAMc8lYbI5hngdfuwD9SPGaFBQ'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
@@ -145,7 +145,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://your_heroku_project.com/' + TOKEN)
+    bot.set_webhook(url='https://lit-dawn-57186.herokuapp.com/' + TOKEN)
     return "!", 200
 
 
