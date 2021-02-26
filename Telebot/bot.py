@@ -17,6 +17,7 @@ token = '1638595494:AAH8urA10YAMc8lYbI5hngdfuwD9SPGaFBQ'
 TG_URL = 'https://api/telegram.org/bot{}/{}'
 
 bot = telebot.TeleBot(token)
+server = Flask(__name__)
 
 @bot.message_handler(commands = ['start'])
 def welcome_menu(message):
