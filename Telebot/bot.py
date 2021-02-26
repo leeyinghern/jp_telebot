@@ -1,10 +1,16 @@
+# Standard imports
+import datetime as dt
+import os
+
+# 3rd Party imports
 import telebot
-# from telebot import TeleBot, types
+from flask import Flask, request
+
+# Local modules
 from state import States
 import keyboards
 import storage
 from storage import IN_MEMORY_STORE, USER_ANSWERS, WRONG_ANSWERS
-import datetime as dt
 from Vocab import vocab
 
 token = '1638595494:AAH8urA10YAMc8lYbI5hngdfuwD9SPGaFBQ'
@@ -93,4 +99,16 @@ def wrong_callback(callback):
     storage.del_user_state(callback.from_user.id)
     bot.send_message(chat_id = callback.from_user.id, text = 'Something went wrong. Type /start to continue', reply_markup=keyboards.remove_keyboard())
 
-bot.polling()
+@server.route('/' + token, methods = ['PSOT'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode('utf-8'))])
+    return "!", 200
+
+@server.route('/')
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url = 'https://lit-dawn-57186.herokuapp.com/' + token)
+
+
+if __name__ == "__main__":
+    server.run(host = '0.0.0.0', port= int(os.environ.get('PORT',5000)))
